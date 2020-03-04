@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react'
 
 import { GlobalContext } from '../context/GlobalState'
-import { generateId } from '../utils'
 
 export const AddTransaction = () => {
     const { addTransaction } = useContext(GlobalContext)
@@ -10,7 +9,7 @@ export const AddTransaction = () => {
 
     const submitTransaction = e => {
         e.preventDefault()
-        addTransaction({ text, amount, id: generateId() })
+        addTransaction({ text, amount })
         setText('')
         setAmount('')
     }
