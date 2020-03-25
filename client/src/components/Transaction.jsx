@@ -1,4 +1,5 @@
 import React, { useContext } from 'react'
+import PropTypes from 'prop-types'
 
 import { GlobalContext } from '../context/GlobalState'
 
@@ -21,4 +22,12 @@ export const Transaction = ({ transaction }) => {
             </button>
         </li>
     )
+}
+
+Transaction.propTypes = {
+    transaction: PropTypes.shape({
+        _id: PropTypes.string.isRequired,
+        text: PropTypes.string.isRequired,
+        amount: PropTypes.number.isRequired,
+    }),
 }

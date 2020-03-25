@@ -35,8 +35,7 @@ export const GlobalProvider = ({ children }) => {
 
     async function deleteTransaction(id) {
         try {
-            const deletedTransaction = await api.delete(`/${id}`)
-            // console.log(deletedTransaction)
+            await api.delete(`/${id}`)
             dispatch({
                 type: 'DELETE_TRANSACTION',
                 payload: id,
