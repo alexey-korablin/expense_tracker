@@ -20,6 +20,8 @@ const initialState = {
     loading: false,
 }
 
+// TODO change all action.transaction, action.error etc. to
+// action.payload
 const transactions = (state = initialState, action) => {
     switch (action.type) {
         case GET_TRANSACTIONS:
@@ -31,13 +33,13 @@ const transactions = (state = initialState, action) => {
         case GET_TRANSACTIONS_SUCCESS:
             return {
                 ...state,
-                transactions: [...action.transactions],
+                transactions: [...action.payload],
                 loading: false,
             }
         case GET_TRANSACTIONS_FAILURE:
             return {
                 ...state,
-                error: action.error,
+                error: action.payload,
                 loading: false,
             }
         case ADD_TRANSACTION:
@@ -77,6 +79,8 @@ const transactions = (state = initialState, action) => {
                 loading: false,
                 error: action.error,
             }
+        default:
+            return state
     }
 }
 

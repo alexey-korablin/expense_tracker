@@ -62,10 +62,12 @@ export const addTransaction = transaction => {
         dispatch(addingTransaction())
         const config = { 'Content-Type': 'application/json' }
         try {
-            const transaction = await api.post('/', transaction, config)
-            dispatch(addTransactionSuccess(transaction.data.data))
+            const recentTransaction = await api.post('/', transaction, config)
+            dispatch(addTransactionSuccess(recentTransaction.data.data))
         } catch (err) {
-            dispatch(addTransactionError(err.response.data.error))
+            dispatch(
+                addTransactionError(err.response.data.error || err.message)
+            )
         }
     }
 }
@@ -77,7 +79,9 @@ export const getTransactions = () => {
             const transactions = await api.get('/')
             dispatch(getTransactionsSuccess(transactions.data.data))
         } catch (err) {
-            dispatch(getTransactionsError(err.response.data.error))
+            dispatch(
+                getTransactionsError(err.response.data.error || err.message)
+            )
         }
     }
 }
@@ -86,10 +90,12 @@ export const deleteTransaction = id => {
     return async dispatch => {
         dispatch(deletingTransaction())
         try {
-            await api.delete('/:id')
+            await api.delete(`/${id}`)
             dispatch(deleteTransactionSuccess(id))
         } catch (err) {
-            dispatch(deleteTransactionError(err.response.data.error))
+            dispatch(
+                deleteTransactionError(err.response.data.error || err.message)
+            )
         }
     }
 }
