@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { selectTransactionsList } from '../reducers'
 
@@ -31,7 +32,15 @@ export const IncomeExpenses = ({ transactions }) => {
     )
 }
 
-// TODO specify propTypes
+IncomeExpenses.propTypes = {
+    transactions: PropTypes.arrayOf(
+        PropTypes.shape({
+            text: PropTypes.string.isRequired,
+            amount: PropTypes.number.isRequired,
+            _id: PropTypes.string.isRequired,
+        })
+    ),
+}
 
 const mapStateToProps = state => ({
     transactions: selectTransactionsList(state),

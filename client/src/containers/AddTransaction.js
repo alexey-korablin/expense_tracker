@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
+import PropTypes from 'prop-types'
 
 import { addTransaction } from '../actions/transactions'
 
@@ -44,7 +45,9 @@ const AddTransaction = ({ addTransaction }) => {
     )
 }
 
-// TODO specify propTypes
+AddTransaction.propTypes = {
+    addTransaction: PropTypes.func.isRequired,
+}
 
 const mapDispatchToProps = { addTransaction }
 
