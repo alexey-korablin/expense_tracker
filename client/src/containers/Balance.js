@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 
 import { selectTransactionsList } from '../reducers'
 
+// comment for test purpose
+
 const Balance = ({ transactions }) => {
     // TODO create selectors for amounts and totalAmounts
     const amounts = transactions.map(transaction => transaction.amount)
