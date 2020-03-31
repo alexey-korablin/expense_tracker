@@ -8,3 +8,11 @@ export const generateId = () => {
     console.log(result)
     return result
 }
+
+export const calculateIncome = (ack, amount) => {
+    return amount > 0 ? ack + amount : ack
+}
+
+export const calculateExpence = (ack, amount) => {
+    return amount < 0 ? ack + amount * -1 : ack
+}
