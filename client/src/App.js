@@ -2,15 +2,14 @@ import React from 'react'
 import './App.css'
 
 import { Header } from './components/Header'
-import { Balance } from './components/Balance'
-import { IncomeExpenses } from './components/IncomeExpenses'
-import { TransactionList } from './components/TransactionList'
-import { AddTransaction } from './components/AddTransaction'
-import { GlobalProvider } from './context/GlobalState'
+import Balance from './containers/Balance'
+import IncomeExpenses from './containers/IncomeExpenses'
+import TransactionList from './containers/TransactionList'
+import AddTransaction from './containers/AddTransaction'
 
 function App() {
     return (
-        <GlobalProvider>
+        <>
             <Header />
             <div className="container">
                 <Balance />
@@ -18,7 +17,7 @@ function App() {
                 <TransactionList />
                 <AddTransaction />
             </div>
-        </GlobalProvider>
+        </>
     )
 }
 
