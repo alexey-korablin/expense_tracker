@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 
 import { deleteTransaction } from '../actions/transactions'
 
-export const Transaction = ({ transaction, deleteTransaction }) => {
+export const Transaction = ({ transaction, onDeleteTransaction }) => {
     const amountString =
         transaction.amount < 0
             ? `-$${transaction.amount * -1}`
@@ -16,7 +16,7 @@ export const Transaction = ({ transaction, deleteTransaction }) => {
             <span>{amountString}</span>
             <button
                 className="delete-btn"
-                onClick={() => deleteTransaction(transaction._id)}
+                onClick={() => onDeleteTransaction(transaction._id)}
             >
                 x
             </button>
@@ -30,6 +30,7 @@ Transaction.propTypes = {
         text: PropTypes.string.isRequired,
         amount: PropTypes.number.isRequired,
     }),
+    onDeleteTransaction: PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state, props) => ({
@@ -37,7 +38,7 @@ const mapStateToProps = (state, props) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    deleteTransaction: id => dispatch(deleteTransaction(id)),
+    onDeleteTransaction: id => dispatch(deleteTransaction(id)),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Transaction)

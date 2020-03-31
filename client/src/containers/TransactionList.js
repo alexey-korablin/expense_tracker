@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { Transaction } from './Transaction'
-import { selectTransactionsList } from '../reducers'
+import Transaction from './Transaction'
+import { selectTransactionsList } from '../selectors'
 import { getTransactions } from '../actions/transactions'
 
 export const TransactionList = ({ transactions, getTransactions }) => {

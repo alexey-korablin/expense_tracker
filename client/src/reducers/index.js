@@ -6,6 +6,4 @@ import transactions from './transactions'
 // Next step: add users reducer
 const reducer = combineReducers({ transactions })
 
-export const selectTransactionsList = state => state.transactions.transactions
-
 export default reducer

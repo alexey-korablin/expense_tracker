@@ -2,7 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { selectTransactionsList } from '../reducers'
+import { selectTransactionsList } from '../selectors'
 
 // comment for test purpose
 

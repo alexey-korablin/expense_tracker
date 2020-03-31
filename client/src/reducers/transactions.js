@@ -67,7 +67,7 @@ const transactions = (state = initialState, action) => {
         case DELETE_TRANSACTION_SUCCESS:
             return {
                 ...state,
-                transactions: state.filter(
+                transactions: state.transactions.filter(
                     transaction => transaction._id !== action.payload
                 ),
             }
