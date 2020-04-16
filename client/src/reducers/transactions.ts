@@ -14,13 +14,20 @@ import {
     GET_TRANSACTIONS_FAILURE,
 } from '../actionTypes'
 
-const initialState = {
+import {
+    TransactionState,
+    TransactionActionTypes,
+    Transaction,
+} from '../interfaces'
+
+const initialState: TransactionState = {
     transactions: [],
     error: '',
     loading: false,
 }
 
-const transactions = (state = initialState, action) => {
+const transactions = (state = initialState, action: TransactionActionTypes) => {
+    console.log('state => ', state)
     switch (action.type) {
         case GET_TRANSACTIONS:
             return {
@@ -68,7 +75,8 @@ const transactions = (state = initialState, action) => {
             return {
                 ...state,
                 transactions: state.transactions.filter(
-                    transaction => transaction._id !== action.payload
+                    (transaction: Transaction) =>
+                        transaction._id !== action.payload
                 ),
             }
         case DELETE_TRANSACTION_FAILURE:
