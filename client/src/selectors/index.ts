@@ -1,6 +1,6 @@
-import { Transaction, State } from '../interfaces'
+import { TransactionInterface, State } from '../interfaces'
 
-export const selectTransactionsList = (state: State): Transaction[] =>
+export const selectTransactionsList = (state: State): TransactionInterface[] =>
     state.transactions.transactions
 
 export const selectTransactionsAmountList = (state: State) =>

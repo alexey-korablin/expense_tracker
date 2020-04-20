@@ -17,7 +17,7 @@ import {
 import {
     TransactionState,
     TransactionActionTypes,
-    Transaction,
+    TransactionInterface,
 } from '../interfaces'
 
 const initialState: TransactionState = {
@@ -26,7 +26,10 @@ const initialState: TransactionState = {
     loading: false,
 }
 
-const transactions = (state = initialState, action: TransactionActionTypes) => {
+const transactions = (
+    state = initialState,
+    action: TransactionActionTypes
+): TransactionState => {
     console.log('state => ', state)
     switch (action.type) {
         case GET_TRANSACTIONS:
@@ -75,7 +78,7 @@ const transactions = (state = initialState, action: TransactionActionTypes) => {
             return {
                 ...state,
                 transactions: state.transactions.filter(
-                    (transaction: Transaction) =>
+                    (transaction: TransactionInterface) =>
                         transaction._id !== action.payload
                 ),
             }

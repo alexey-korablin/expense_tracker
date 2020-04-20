@@ -20,12 +20,12 @@ export interface State {
 }
 
 export interface TransactionState {
-    transactions: Transaction[]
+    transactions: TransactionInterface[]
     error: string
     loading: boolean
 }
 
-export interface Transaction {
+export interface TransactionInterface {
     _id: string
     text: string
     amount: number
@@ -41,7 +41,7 @@ export interface InitialState {
 // Action interfaces
 export interface Action {
     type: string
-    payload: string | Transaction | Array<Transaction>
+    payload: string | TransactionInterface | Array<TransactionInterface>
 }
 
 interface DeleteTransactionAction {
@@ -64,7 +64,7 @@ interface AddTransactionAction {
 
 interface AddTransactionActionSuccess {
     type: typeof ADD_TRANSACTION_SUCCESS
-    payload: Transaction
+    payload: TransactionInterface
 }
 
 interface AddTransactionActionFailure {
@@ -72,13 +72,13 @@ interface AddTransactionActionFailure {
     payload: string
 }
 
-interface GetTransactionAction {
+interface GetTransactionsAction {
     type: typeof GET_TRANSACTIONS
 }
 
 interface GetTransactionActionSuccess {
     type: typeof GET_TRANSACTIONS_SUCCESS
-    payload: Transaction[]
+    payload: TransactionInterface[]
 }
 
 interface GetTransactionActionFailure {
@@ -97,7 +97,7 @@ type TransactionActionAddTypes =
     | AddTransactionActionFailure
 
 type TransactionActionGetTypes =
-    | GetTransactionAction
+    | GetTransactionsAction
     | GetTransactionActionSuccess
     | GetTransactionActionFailure
 
@@ -105,3 +105,13 @@ export type TransactionActionTypes =
     | TransactionActionDeleteTypes
     | TransactionActionAddTypes
     | TransactionActionGetTypes
+
+export interface TransactionListInterface {
+    transactions: TransactionInterface[]
+    getTransactions: any
+}
+
+export interface TransactionComponent {
+    transaction: TransactionInterface
+    onDeleteTransaction: any
+}

@@ -1,10 +1,10 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { connect } from 'react-redux'
 
-import { deleteTransaction } from '../actions/transactions'
-
-export const Transaction = ({ transaction, onDeleteTransaction }) => {
+export const Transaction = ({
+    transaction,
+    onDeleteTransaction,
+}: any): JSX.Element => {
     const amountString =
         transaction.amount < 0
             ? `-$${transaction.amount * -1}`
@@ -32,13 +32,3 @@ Transaction.propTypes = {
     }),
     onDeleteTransaction: PropTypes.func.isRequired,
 }
-
-const mapStateToProps = (state, props) => ({
-    transaction: props.transaction,
-})
-
-const mapDispatchToProps = dispatch => ({
-    onDeleteTransaction: id => dispatch(deleteTransaction(id)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(Transaction)
