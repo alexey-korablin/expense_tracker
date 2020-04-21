@@ -30,7 +30,6 @@ const transactions = (
     state = initialState,
     action: TransactionActionTypes
 ): TransactionState => {
-    console.log('state => ', state)
     switch (action.type) {
         case GET_TRANSACTIONS:
             return {
