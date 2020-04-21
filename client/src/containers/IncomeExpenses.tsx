@@ -1,11 +1,24 @@
 import React from 'react'
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { selectIncomeExpence } from '../selectors'
 import { calculateIncome, calculateExpence } from '../utils'
+import { State } from './../interfaces/index'
 
-export const IncomeExpenses = ({ income, expence }) => (
+const mapStateToProps = (state: State) => ({
+    income: selectIncomeExpence(state, calculateIncome),
+    expence: selectIncomeExpence(state, calculateExpence),
+})
+
+const connector = connect(mapStateToProps)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+export const IncomeExpenses = ({
+    income,
+    expence,
+}: PropsFromRedux): JSX.Element => (
     <div className="inc-exp-container">
         <div>
             <h4>Income</h4>
@@ -23,9 +36,6 @@ IncomeExpenses.propTypes = {
     expence: PropTypes.string.isRequired,
 }
 
-const mapStateToProps = state => ({
-    income: selectIncomeExpence(state, calculateIncome),
-    expence: selectIncomeExpence(state, calculateExpence),
-})
+export default connector(IncomeExpenses)
 
-export default connect(mapStateToProps)(IncomeExpenses)
+// export default connect(mapStateToProps)(IncomeExpenses)

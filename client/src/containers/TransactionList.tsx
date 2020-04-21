@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
-import PropTypes from 'prop-types'
+// import PropTypes from 'prop-types'
 
 import { Transaction } from './Transaction'
 import { selectTransactionsList } from '../selectors'
 import { getTransactions, deleteTransaction } from '../actions/transactions'
 import { State, TransactionInterface } from '../interfaces'
 
-const mapStateToProps = (state: State) => {
-    console.log('transactions to props => ', selectTransactionsList(state))
-    return {
-        transactions: selectTransactionsList(state),
-    }
-}
+const mapStateToProps = (state: State) => ({
+    transactions: selectTransactionsList(state),
+})
 
 const mapDispatchToProps = (dispatch: any) => ({
     getTransactions: () => dispatch(getTransactions()),
@@ -31,14 +28,6 @@ export const TransactionList = ({
     useEffect(() => {
         getTransactions()
     }, [])
-
-    console.count('Transaction')
-    console.log(
-        'Transaction ==> ',
-        transactions,
-        getTransactions,
-        onDeleteTransaction
-    )
 
     return (
         <>
