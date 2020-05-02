@@ -1,14 +1,22 @@
 import React, { useState } from 'react'
-import { connect } from 'react-redux'
+import { connect, ConnectedProps } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import { addTransaction } from '../actions/transactions'
 
-const AddTransaction = ({ addTransaction }) => {
-    const [text, setText] = useState('')
-    const [amount, setAmount] = useState('')
+const mapDispatchToProps = { addTransaction }
 
-    const submitTransaction = e => {
+const connector = connect(null, mapDispatchToProps)
+
+type PropsFromRedux = ConnectedProps<typeof connector>
+
+type Amount = string | number
+
+const AddTransaction = ({ addTransaction }: PropsFromRedux): JSX.Element => {
+    const [text, setText] = useState('')
+    const [amount, setAmount] = useState<Amount>('')
+
+    const submitTransaction = (e: React.SyntheticEvent): void => {
         e.preventDefault()
         addTransaction({ text, amount })
         setText('')
@@ -24,7 +32,9 @@ const AddTransaction = ({ addTransaction }) => {
                     <input
                         type="text"
                         placeholder="Enter text..."
-                        onChange={e => setText(e.currentTarget.value)}
+                        onChange={(e: React.SyntheticEvent<HTMLInputElement>) =>
+                            setText(e.currentTarget.value)
+                        }
                         value={text}
                     />
                 </div>
@@ -33,7 +43,9 @@ const AddTransaction = ({ addTransaction }) => {
                     <input
                         type="number"
                         placeholder="Enter amount..."
-                        onChange={e => setAmount(+e.currentTarget.value)}
+                        onChange={(e: React.SyntheticEvent<HTMLInputElement>) =>
+                            setAmount(+e.currentTarget.value)
+                        }
                         value={amount}
                     />
                 </div>
@@ -49,6 +61,7 @@ AddTransaction.propTypes = {
     addTransaction: PropTypes.func.isRequired,
 }
 
-const mapDispatchToProps = { addTransaction }
+// const mapDispatchToProps = { addTransaction }
 
-export default connect(null, mapDispatchToProps)(AddTransaction)
+// export default connect(null, mapDispatchToProps)(AddTransaction)
+export default connector(AddTransaction)
