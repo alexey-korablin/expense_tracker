@@ -3,64 +3,74 @@ import {
     DELETE_TRANSACTION,
     DELETE_TRANSACTION_SUCCESS,
     DELETE_TRANSACTION_FAILURE,
-} from '../actionTypes'
+} from '../actions'
 import {
     ADD_TRANSACTION,
     ADD_TRANSACTION_SUCCESS,
     ADD_TRANSACTION_FAILURE,
-} from '../actionTypes'
+} from '../actions'
 import {
     GET_TRANSACTIONS,
     GET_TRANSACTIONS_SUCCESS,
     GET_TRANSACTIONS_FAILURE,
-} from '../actionTypes'
+} from '../actions'
+import { TransactionActionTypes, TransactionInterface } from '../interfaces'
+import { Dispatch } from 'react'
 
-const gettingTransactions = () => ({
+type ConfigType = {
+    'Content-Type': string
+}
+
+const gettingTransactions = (): TransactionActionTypes => ({
     type: GET_TRANSACTIONS,
 })
 
-const getTransactionsSuccess = transactionsList => ({
+const getTransactionsSuccess = (
+    transactionsList: TransactionInterface[]
+): TransactionActionTypes => ({
     type: GET_TRANSACTIONS_SUCCESS,
     payload: transactionsList,
 })
 
-const getTransactionsError = error => ({
+const getTransactionsError = (error: string): TransactionActionTypes => ({
     type: GET_TRANSACTIONS_FAILURE,
     payload: error,
 })
 
-const addingTransaction = () => ({
+const addingTransaction = (): TransactionActionTypes => ({
     type: ADD_TRANSACTION,
 })
 
-const addTransactionSuccess = transaction => ({
+const addTransactionSuccess = (
+    transaction: TransactionInterface
+): TransactionActionTypes => ({
     type: ADD_TRANSACTION_SUCCESS,
     payload: transaction,
 })
 
-const addTransactionError = error => ({
+const addTransactionError = (error: string): TransactionActionTypes => ({
     type: ADD_TRANSACTION_FAILURE,
     payload: error,
 })
 
-const deletingTransaction = () => ({
+const deletingTransaction = (): TransactionActionTypes => ({
     type: DELETE_TRANSACTION,
 })
 
-const deleteTransactionSuccess = id => ({
+const deleteTransactionSuccess = (id: string): TransactionActionTypes => ({
     type: DELETE_TRANSACTION_SUCCESS,
     payload: id,
 })
 
-const deleteTransactionError = error => ({
+const deleteTransactionError = (error: string): TransactionActionTypes => ({
     type: DELETE_TRANSACTION_FAILURE,
     payload: error,
 })
 
-export const addTransaction = transaction => {
-    return async dispatch => {
+export const addTransaction = (transaction: TransactionInterface) => {
+    return async (dispatch: Dispatch<TransactionActionTypes>) => {
         dispatch(addingTransaction())
-        const config = { 'Content-Type': 'application/json' }
+        const config = { headers: { 'Content-Type': 'application/json' } }
         try {
             const recentTransaction = await api.post('/', transaction, config)
             dispatch(addTransactionSuccess(recentTransaction.data.data))
@@ -73,7 +83,7 @@ export const addTransaction = transaction => {
 }
 
 export const getTransactions = () => {
-    return async dispatch => {
+    return async (dispatch: Dispatch<TransactionActionTypes>) => {
         dispatch(gettingTransactions())
         try {
             const transactions = await api.get('/')
@@ -86,8 +96,8 @@ export const getTransactions = () => {
     }
 }
 
-export const deleteTransaction = id => {
-    return async dispatch => {
+export const deleteTransaction = (id: string) => {
+    return async (dispatch: Dispatch<TransactionActionTypes>) => {
         dispatch(deletingTransaction())
         try {
             await api.delete(`/${id}`)

@@ -3,17 +3,17 @@ import {
     DELETE_TRANSACTION,
     DELETE_TRANSACTION_SUCCESS,
     DELETE_TRANSACTION_FAILURE,
-} from '../actionTypes'
+} from '../actions'
 import {
     ADD_TRANSACTION,
     ADD_TRANSACTION_SUCCESS,
     ADD_TRANSACTION_FAILURE,
-} from '../actionTypes'
+} from '../actions'
 import {
     GET_TRANSACTIONS,
     GET_TRANSACTIONS_SUCCESS,
     GET_TRANSACTIONS_FAILURE,
-} from '../actionTypes'
+} from '../actions'
 
 export interface State {
     transactions: TransactionState
@@ -26,10 +26,10 @@ export interface TransactionState {
 }
 
 export interface TransactionInterface {
-    _id: string
+    _id?: string
     text: string
     amount: number
-    createdAt: string
+    createdAt?: string
 }
 
 export interface InitialState {

@@ -3,8 +3,10 @@ import { TransactionInterface, State } from '../interfaces'
 export const selectTransactionsList = (state: State): TransactionInterface[] =>
     state.transactions.transactions
 
-export const selectTransactionsAmountList = (state: State) =>
-    selectTransactionsList(state).map(transaction => transaction.amount)
+export const selectTransactionsAmountList = (state: State): number[] =>
+    selectTransactionsList(state).map(
+        (transaction: TransactionInterface): number => transaction.amount
+    )
 
 export const selectTotalAmount = (state: State) =>
     selectTransactionsAmountList(state)

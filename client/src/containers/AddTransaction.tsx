@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { connect, ConnectedProps } from 'react-redux'
 import PropTypes from 'prop-types'
 
-import { addTransaction } from '../actions/transactions'
+import { addTransaction } from '../actionCreators/transactions'
 
 const mapDispatchToProps = { addTransaction }
 
@@ -10,17 +10,17 @@ const connector = connect(null, mapDispatchToProps)
 
 type PropsFromRedux = ConnectedProps<typeof connector>
 
-type Amount = string | number
+type Amount = number
 
 const AddTransaction = ({ addTransaction }: PropsFromRedux): JSX.Element => {
     const [text, setText] = useState('')
-    const [amount, setAmount] = useState<Amount>('')
+    const [amount, setAmount] = useState<Amount>(0)
 
     const submitTransaction = (e: React.SyntheticEvent): void => {
         e.preventDefault()
         addTransaction({ text, amount })
         setText('')
-        setAmount('')
+        setAmount(0)
     }
 
     return (

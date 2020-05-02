@@ -2,17 +2,17 @@ import {
     DELETE_TRANSACTION,
     DELETE_TRANSACTION_SUCCESS,
     DELETE_TRANSACTION_FAILURE,
-} from '../actionTypes'
+} from '../actions'
 import {
     ADD_TRANSACTION,
     ADD_TRANSACTION_SUCCESS,
     ADD_TRANSACTION_FAILURE,
-} from '../actionTypes'
+} from '../actions'
 import {
     GET_TRANSACTIONS,
     GET_TRANSACTIONS_SUCCESS,
     GET_TRANSACTIONS_FAILURE,
-} from '../actionTypes'
+} from '../actions'
 
 import {
     TransactionState,

@@ -4,7 +4,10 @@ import { connect, ConnectedProps } from 'react-redux'
 
 import { Transaction } from './Transaction'
 import { selectTransactionsList } from '../selectors'
-import { getTransactions, deleteTransaction } from '../actions/transactions'
+import {
+    getTransactions,
+    deleteTransaction,
+} from '../actionCreators/transactions'
 import { State, TransactionInterface } from '../interfaces'
 
 const mapStateToProps = (state: State) => ({
@@ -34,15 +37,17 @@ export const TransactionList = ({
             <h3>History</h3>
             <ul className="list">
                 {transactions &&
-                    transactions.map((transaction: TransactionInterface) => {
-                        return (
-                            <Transaction
-                                key={transaction._id}
-                                transaction={transaction}
-                                onDeleteTransaction={onDeleteTransaction}
-                            />
-                        )
-                    })}
+                    transactions.map(
+                        (transaction: any): JSX.Element => {
+                            return (
+                                <Transaction
+                                    key={transaction._id}
+                                    transaction={transaction}
+                                    onDeleteTransaction={onDeleteTransaction}
+                                />
+                            )
+                        }
+                    )}
             </ul>
         </>
     )

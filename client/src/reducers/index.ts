@@ -7,3 +7,4 @@ import transactions from './transactions'
 const reducer = combineReducers({ transactions })
 
 export default reducer
+// export type RootState = ReturnType<typeof reducer>
